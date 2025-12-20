@@ -33,6 +33,7 @@ function updateSnow() {
 }
 setInterval(drawSnow, 30);
 
+// Keypad Code Logic
 let enteredCode = "";
 const correctCode = "1005"; 
 
@@ -83,6 +84,6 @@ function revealCrush() {
         particleCount: 200,
         spread: 100,
         origin: { y: 0.6 },
-        colors: ['#ff69b4', '#6fffe9', '#ffffff']
+        colors: ['#9bcbeb', '#ffffff', '#6fffe9'] // Columbia colors + White/Teal
     });
 }
