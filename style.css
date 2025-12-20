@@ -104,9 +104,22 @@ body, html { margin: 0; padding: 0; overflow: hidden; background: #0b132b; color
 /* Confession Slide Logic */
 .confession-hidden { opacity: 0; pointer-events: none; transition: opacity 1s ease; }
 .confession-active { opacity: 1 !important; pointer-events: all !important; }
-.confession-box { transform: translateY(100px); transition: transform 3s ease-out; max-width: 550px; }
+.confession-box {
+    transform: translateY(100px);
+    transition: transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+    max-width: 550px;
+    width: 90%; /* Ensures padding on mobile */
+    padding: 30px;
+}
 .confession-active .confession-box { transform: translateY(0); }
-.confession-text { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.7; text-align: left; }
+.confession-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    text-align: left;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
 
 /* Item Positions */
 .item-1 { top: 15%; left: 10%; }
