@@ -1,0 +1,122 @@
+body, html { margin: 0; padding: 0; overflow: hidden; background: #0b132b; color: white; }
+
+.screen { 
+    height: 100vh; width: 100vw; 
+    display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; 
+    position: absolute; transition: opacity 1s; 
+}
+
+.hidden { opacity: 0; pointer-events: none; }
+
+.skyline {
+    position: absolute; bottom: 0; width: 100%; height: 300px;
+    background: url('images/NYC_Skyline_Silhouette.png') repeat-x bottom;
+    background-size: contain; z-index: 1;
+    filter: drop-shadow(0px -5px 15px rgba(111, 255, 233, 0.2));
+}
+
+#snow-canvas { position: absolute; top: 0; left: 0; z-index: 0; }
+.content { z-index: 2; text-align: center; }
+
+.birthday-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideInRight 1.5s ease-out forwards, textGently 3s infinite 1.5s;
+}
+
+@keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+@keyframes textGently { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.start-btn {
+    margin-top: 30px; padding: 12px 30px; background: transparent;
+    border: 2px solid #6fffe9; color: #6fffe9; font-family: 'Montserrat', sans-serif;
+    border-radius: 50px; cursor: pointer; font-size: 1.2rem; transition: 0.3s;
+    opacity: 0; animation: fadeIn 1s ease-in forwards 1.5s;
+}
+.start-btn:hover { background: #6fffe9; color: #0b132b; box-shadow: 0 0 20px #6fffe9; }
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* 3D Cards & Decorations */
+.decorations { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 1; }
+
+.fav-item {
+    position: absolute; width: 140px;
+    perspective: 1000px; cursor: pointer; pointer-events: all;
+    animation: floatItems 4s ease-in-out infinite;
+}
+
+.item-inner {
+    position: relative; width: 100%; transition: transform 0.8s; transform-style: preserve-3d;
+}
+
+.fav-item.flipped .item-inner { transform: rotateY(180deg); }
+
+.item-front, .item-back {
+    width: 100%; backface-visibility: hidden; border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+.item-front img { width: 100%; display: block; border-radius: 8px; border: 2px solid white; }
+
+.item-back {
+    position: absolute; top: 0; left: 0; height: 100%;
+    background: #1c2541; color: #6fffe9; display: flex;
+    align-items: center; justify-content: center; font-size: 3.5rem;
+    font-family: 'Montserrat', sans-serif; transform: rotateY(180deg);
+    border: 2px solid #6fffe9;
+}
+
+@keyframes floatItems { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+
+/* Center everything in Modals */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(11, 19, 43, 0.9); display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+
+.modal-content {
+    background: #1c2541; padding: 40px; border-radius: 20px; 
+    border: 2px solid #6fffe9; text-align: center; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+#code-input {
+    width: 200px; background: #0b132b; border: 1px solid #6fffe9;
+    color: #6fffe9; font-size: 2rem; text-align: center; margin: 0 auto 20px auto;
+    letter-spacing: 10px; font-family: 'Montserrat', sans-serif; display: block; outline: none;
+}
+
+.keypad { display: grid; grid-template-columns: repeat(3, 70px); gap: 10px; margin: 0 auto; }
+.keypad button {
+    background: #3a506b; color: white; border: none; padding: 15px;
+    font-size: 1.2rem; cursor: pointer; border-radius: 5px; transition: 0.2s;
+}
+.keypad button:active { background: #6fffe9; color: #0b132b; transform: scale(0.9); }
+
+/* Confession Slide Logic */
+.confession-hidden { opacity: 0; pointer-events: none; transition: opacity 1s ease; }
+.confession-active { opacity: 1 !important; pointer-events: all !important; }
+.confession-box { transform: translateY(100px); transition: transform 3s ease-out; max-width: 550px; }
+.confession-active .confession-box { transform: translateY(0); }
+.confession-text { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; line-height: 1.7; text-align: left; }
+
+/* Item Positions */
+.item-1 { top: 15%; left: 10%; }
+.item-2 { top: 10%; right: 15%; }
+.item-3 { bottom: 35%; left: 15%; }
+.item-tree { bottom: 15%; right: 10%; width: 200px; }
+
+.taxi { position: absolute; bottom: 25px; font-size: 45px; z-index: 2; animation: drive 15s linear infinite; }
+@keyframes drive { from { right: -100px; } to { right: 110%; } }
+.street-sign { position: absolute; top: 50%; right: 10%; background: #00703c; color: white; padding: 5px 15px; border: 2px solid white; }
+.close-btn { position: absolute; top: 10px; right: 20px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
