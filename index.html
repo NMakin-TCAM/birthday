@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Sophia!</title>
+    <title>Happy Birthday & 2026!</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;500;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -14,48 +14,52 @@
         <canvas id="snow-canvas"></canvas>
         <div class="skyline"></div>
         
-        <div class="content">
-            <div class="decorations">
-                <div class="fav-item item-1" onclick="this.classList.toggle('flipped')">
-                    <div class="item-inner">
-                        <div class="item-front"><img src="images/fav_book.jpg"></div>
-                        <div class="item-back">1</div>
-                    </div>
-                </div>
-                <div class="fav-item item-2" onclick="this.classList.toggle('flipped')">
-                    <div class="item-inner">
-                        <div class="item-front"><img src="images/fav_movie.jpg"></div>
-                        <div class="item-back">0</div>
-                    </div>
-                </div>
-                <div class="fav-item item-3" onclick="this.classList.toggle('flipped')">
-                    <div class="item-inner">
-                        <div class="item-front"><img src="images/fav_album.png"></div>
-                        <div class="item-back">0</div>
-                    </div>
-                </div>
-                <div class="fav-item item-tree" onclick="this.classList.toggle('flipped')">
-                    <div class="item-inner">
-                        <div class="item-front"><img src="images/Zelda_Logo.png"></div>
-                        <div class="item-back">5</div>
-                    </div>
-                </div>
+        <div class="timer-container">
+            <div id="countdown">00d 00h 00m 00s</div>
+            <div class="year-text">2026</div>
+        </div>
 
-                <div class="taxi">🚕</div>
-                <div class="street-sign">SOPHIA ST.</div>
+        <div class="decorations">
+            <div class="fav-item item-1" onclick="this.classList.toggle('flipped')">
+                <div class="item-inner">
+                    <div class="item-front"><img src="images/fav_book.jpg"></div>
+                    <div class="item-back">1</div>
+                </div>
             </div>
+            <div class="fav-item item-2" onclick="this.classList.toggle('flipped')">
+                <div class="item-inner">
+                    <div class="item-front"><img src="images/fav_movie.jpg"></div>
+                    <div class="item-back">0</div>
+                </div>
+            </div>
+            <div class="fav-item item-3" onclick="this.classList.toggle('flipped')">
+                <div class="item-inner">
+                    <div class="item-front"><img src="images/fav_album.png"></div>
+                    <div class="item-back">0</div>
+                </div>
+            </div>
+            <div class="fav-item item-tree" onclick="this.classList.toggle('flipped')">
+                <div class="item-inner">
+                    <div class="item-front"><img src="images/Zelda_Logo.png"></div>
+                    <div class="item-back">5</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
             <h1 class="birthday-text slide-in">Happy Birthday, <span>Sophia</span></h1>
             <button id="surprise-btn" class="start-btn" onclick="openKeypad()">Click for a surprise</button>
         </div>
+
+        <div class="taxi">🚕</div>
+        <div class="street-sign">SOPHIA ST.</div>
     </div>
 
     <div id="puzzle-modal" class="modal-overlay hidden">
-        <div class="modal-content sheikah-style">
+        <div class="modal-content">
             <button class="close-btn" onclick="closePuzzle()">×</button>
-            <h2 style="font-family: 'Montserrat', sans-serif; margin-bottom: 5px;">Enter the Hidden Code</h2>
-            <p style="font-size: 0.9rem; color: #6fffe9; font-style: italic; margin-bottom: 15px;">
-                "The sky holds the keys to the truth..."
-            </p>
+            <h2 style="font-family: 'Montserrat', sans-serif;">Enter the Hidden Code</h2>
+            <p style="font-size: 0.85rem; color: #6fffe9; font-style: italic; margin-bottom: 15px;">"The sky holds the keys to the truth..."</p>
             <input type="password" id="code-input" maxlength="4" readonly placeholder="****">
             <div class="keypad">
                 <button onclick="pressKey(1)">1</button><button onclick="pressKey(2)">2</button><button onclick="pressKey(3)">3</button>
@@ -68,17 +72,16 @@
 
     <div id="confession-modal" class="modal-overlay confession-hidden">
         <div class="modal-content confession-box">
-            <h2 class="birthday-text" style="font-size: 2.8rem; margin-bottom: 20px;">Surprise!</h2>
-            <div class="confession-text" style="text-align: center;">
-                <p>HAPPY 18th BIRTHDAY and once again, congratulations on getting into <span style="color: #9bcbeb; font-weight: bold;">Columbia!</span> 🎂 🎉</p>
-                <p>Talking to you has been one of my highlights of senior year and I appreciate you :) 💛</p>
+            <h2 class="birthday-text" style="font-size: 2.5rem; margin-bottom: 15px;">Happy New Year! 🎆</h2>
+            <div class="confession-text">
+                <p>One more note: 10/05 was the day we started talking every day, and honestly, the last 85 days have been one of the highlights of my senior year.</p>
+                <p>Somewhere along the way, I realized I like you as more than just a friend. No pressure at all to respond right away — I just wanted you to know how special you are to me 💛.</p>
             </div>
             <button class="start-btn" style="opacity: 1; animation: none; margin-top: 20px;" onclick="location.reload()">Back to Home</button>
         </div>
     </div>
 
     <audio id="fanfare-sound" src="audio/fanfare.mp3" preload="auto"></audio>
-
     <script src="script.js"></script>
 </body>
 </html>
